@@ -5,50 +5,83 @@
     <script src="js/script.js"></script>
     <title>BlueSky</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 <body>
-<div id="curdate"></div>
-<div id="cityname"></div>
-<div><img src="BlueSkyIcons/clear-night.png" id='dayicon'></div>
-<div id='shortsummary'></div>
-<div id="overview-feel" class='overview'></div>
-<div id="overview-actual" class='overview'></div>
-<div id="overview-precip" class='overview'></div>
-<div id='summary'></div>
+<main id="app">
 
-<div class="sectionweek">
-    <div><img src="" id="tomicon"></div>
-    <div id="tomname"></div>
-    <div id="weektexts-1" class="weektexts"></div>
-    <div id="weektemps-1" class="weektemps"></div>
+    <div id="mainoverview">
+        <div id="cityanddate">
+            <div id="curdate"></div>
+            <div id="cityname"></div>
+        </div>
+        <div id="mainicon">
+            <img src="BlueSkyIcons/clear-night.png" id='dayicon'>
+        </div>
+        <div id="maininfo">
+            <div id="overview-feel" class='overview'></div>
+            <div id="overview-actual" class='overview'></div>
+            <div id="overview-precip" class='overview'></div>
+            <div id='shortsummary'></div>
+        </div>
+    </div>
 
-    <div><img src="" id="shorticons-1" class="shorticons"></div>
-    <div id="weekname-1" class="weekname"></div>
-    <div id="weektexts-2" class="weektexts"></div>
-    <div id="weektemps-2" class="weektemps"></div>
+    <div id='summary'></div>
 
-    <div><img src="" id="shorticons-2" class="shorticons"></div>
-    <div id="weekname-2" class="weekname"></div>
-    <div id="weektexts-3" class="weektexts"></div>
-    <div id="weektemps-3" class="weektemps"></div>
+    <div class="sectionweek-weather">
+        <div class="sectionweek">
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-1" class="shorticons"></div>
+                <div id="weekname-1" class="weekname"></div>
+                <div id="weektexts-1" class="weektexts"></div>
+                <div id="weektemps-1" class="weektemps"></div>
+            </div>
 
-    <div><img src="" id="shorticons-3" class="shorticons"></div>
-    <div id="weekname-3" class="weekname"></div>
-    <div id="weektexts-4" class="weektexts"></div>
-    <div id="weektemps-4" class="weektemps"></div>
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-2" class="shorticons"></div>
+                <div id="weekname-2" class="weekname"></div>
+                <div id="weektexts-2" class="weektexts"></div>
+                <div id="weektemps-2" class="weektemps"></div>
+            </div>
 
-    <div><img src="" id="shorticons-4" class="shorticons"></div>
-    <div id="weekname-4" class="weekname"></div>
-    <div id="weektexts-5" class="weektexts"></div>
-    <div id="weektemps-5" class="weektemps"></div>
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-3" class="shorticons"></div>
+                <div id="weekname-3" class="weekname"></div>
+                <div id="weektexts-3" class="weektexts"></div>
+                <div id="weektemps-3" class="weektemps"></div>
+            </div>
 
-    <div><img src="" id="shorticons-5" class="shorticons"></div>
-    <div id="weekname-5" class="weekname"></div>
-    <div id="weektexts-6" class="weektexts"></div>
-    <div id="weektemps-6" class="weektemps"></div>
-</div>
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-4" class="shorticons"></div>
+                <div id="weekname-4" class="weekname"></div>
+                <div id="weektexts-4" class="weektexts"></div>
+                <div id="weektemps-4" class="weektemps"></div>
+            </div>
 
-<div><img src="BlueSkyIcons/Line.png" id="sepline"></div>
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-5" class="shorticons"></div>
+                <div id="weekname-5" class="weekname"></div>
+                <div id="weektexts-5" class="weektexts"></div>
+                <div id="weektemps-5" class="weektemps"></div>
+            </div>
 
+            <div class="sectionweeksection">
+                <div><img src="" id="shorticons-6" class="shorticons"></div>
+                <div id="weekname-6" class="weekname"></div>
+                <div id="weektexts-6" class="weektexts"></div>
+                <div id="weektemps-6" class="weektemps"></div>
+            </div>
+        </div>
+
+        <div id="divsepline">
+            <img src="BlueSkyIcons/Line.png" id="sepline">
+        </div>
+
+        <div class="sectionweather">
+            Hier kommt der ChartJS Graph hin.
+        </div>
+    </div>
+
+</main>
 </body>
 </html>

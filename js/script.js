@@ -75,19 +75,19 @@ function interpretData(data, cityname) {
     document.getElementById("summary").innerHTML = hourly["summary"];
 
     // Data for Week Preview
-    document.getElementById("tomicon").src = "BlueSkyIcons/" + hourly_data_list[2]["icon"] + ".png";
-    document.getElementById("shorticons-1").src = "BlueSkyIcons/" + daily_data_list[1]["icon"] + ".png";
-    document.getElementById("shorticons-2").src = "BlueSkyIcons/" + daily_data_list[2]["icon"] + ".png";
-    document.getElementById("shorticons-3").src = "BlueSkyIcons/" + daily_data_list[3]["icon"] + ".png";
-    document.getElementById("shorticons-4").src = "BlueSkyIcons/" + daily_data_list[4]["icon"] + ".png";
-    document.getElementById("shorticons-5").src = "BlueSkyIcons/" + daily_data_list[5]["icon"] + ".png";
+    document.getElementById("shorticons-1").src = "BlueSkyIcons/" + hourly_data_list[2]["icon"] + ".png";
+    document.getElementById("shorticons-2").src = "BlueSkyIcons/" + daily_data_list[1]["icon"] + ".png";
+    document.getElementById("shorticons-3").src = "BlueSkyIcons/" + daily_data_list[2]["icon"] + ".png";
+    document.getElementById("shorticons-4").src = "BlueSkyIcons/" + daily_data_list[3]["icon"] + ".png";
+    document.getElementById("shorticons-5").src = "BlueSkyIcons/" + daily_data_list[4]["icon"] + ".png";
+    document.getElementById("shorticons-6").src = "BlueSkyIcons/" + daily_data_list[5]["icon"] + ".png";
 
-    document.getElementById("tomname").innerHTML = week_abbr[1];
-    document.getElementById("weekname-1").innerHTML = week_abbr[2];
-    document.getElementById("weekname-2").innerHTML = week_abbr[3];
-    document.getElementById("weekname-3").innerHTML = week_abbr[4];
-    document.getElementById("weekname-4").innerHTML = week_abbr[5];
-    document.getElementById("weekname-5").innerHTML = week_abbr[6];
+    document.getElementById("weekname-1").innerHTML = week_abbr[1];
+    document.getElementById("weekname-2").innerHTML = week_abbr[2];
+    document.getElementById("weekname-3").innerHTML = week_abbr[3];
+    document.getElementById("weekname-4").innerHTML = week_abbr[4];
+    document.getElementById("weekname-5").innerHTML = week_abbr[5];
+    document.getElementById("weekname-6").innerHTML = week_abbr[6];
 
     document.getElementById("weektexts-1").innerHTML = daily_data_list[1]["summary"];
     document.getElementById("weektexts-2").innerHTML = daily_data_list[2]["summary"];
@@ -111,4 +111,5 @@ function interpretData(data, cityname) {
     }
     console.log(daily_hum_list)
     */
+
 }
