@@ -1,5 +1,9 @@
 //TODO: Die Zeitumstellung wird nicht berücksichtigt, die hourly_data_list hat an Stelle [0] UTC+1 und an Stelle [1] UTC+2
-var mymap
+var mymap;
+var isPainted = false;
+var weatherChart;
+var tempChart;
+var humChart;
 
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(callAPI)
@@ -22,16 +26,14 @@ function callAPI(gpsdata){
 
     var url_API = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + apiKey + "/" + lat + "," + long + exclude + unit;
     var url_city = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + lat + "," + long + "&format=json";
-console.log(url_city)
+
     fetch(url_city).then(
         (result) => {
             return result.json()
         }
     ).then( (json) =>{
-        console.log("AAAA")
-        console.log(json)
             var cityname = json[0]["display_name"].split(",")[3] + ", " + json[0]["display_name"].split(",")[json[0]["display_name"].split(",").length-1];
-            console.log(cityname);
+
             fetch(url_API).then(
                 (result) => {
                     return result.json()
@@ -169,10 +171,20 @@ function interpretData(data, cityname) {
         nexthours[i] = (curhour + i) % 24;
     }
 
+    //Destroys Previous Charts
+    if (isPainted){
+        weatherChart.destroy();
+        tempChart.destroy();
+        humChart.destroy();
+    }
+
+    //To fix Refresh Bug
+    isPainted = true;
+
 
     //Weather Chart
     var ctx = document.getElementById('weatherChart').getContext('2d');
-    var weatherChart = new Chart(ctx, {
+    weatherChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: nexthours,
@@ -204,7 +216,7 @@ function interpretData(data, cityname) {
 
     //Temperature Chart
     var tctx = document.getElementById('tempChart').getContext('2d');
-    var tempChart = new Chart(tctx, {
+    tempChart = new Chart(tctx, {
         type: 'line',
         data: {
             labels: nexthours,
@@ -245,7 +257,7 @@ function interpretData(data, cityname) {
 
     //Humidity Chart
     var hctx = document.getElementById('humChart').getContext('2d');
-    var humChart = new Chart(hctx, {
+    humChart = new Chart(hctx, {
         type: 'line',
         data: {
             labels: nexthours,
@@ -322,7 +334,7 @@ function searchForCity() {
     var searchCityname = document.getElementById("searchcityname").value.toLowerCase();
 
     var url_searchCity = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + searchCityname + "&format=json";
-console.log(url_searchCity)
+
     fetch(url_searchCity).then(
         (result) => {
             return result.json()
