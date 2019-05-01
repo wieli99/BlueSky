@@ -1,26 +1,37 @@
+//TODO: Die Zeitumstellung wird nicht berücksichtigt, die hourly_data_list hat an Stelle [0] UTC+1 und an Stelle [1] UTC+2
+var mymap
+
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(callAPI)
 }
 
 function callAPI(gpsdata){
     console.log(gpsdata);
+    if (typeof gpsdata != "string"){ //on refresh the posiion object is different
+        var lat = gpsdata.coords.latitude;
+        var long = gpsdata.coords.longitude;
+    } else {
+        var lat = gpsdata.split(",")[0];
+        var long = gpsdata.split(",")[1];
+    }
     // Set Variables for API URL
     var apiKey = "1868ff532a12f7795015bc33a64c2e97";
     var exclude = "?exclude=minutely,alerts,flags";
     var unit = "&units=si";
-    var lat = gpsdata.coords.latitude;
-    var long = gpsdata.coords.longitude;
+
 
     var url_API = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + apiKey + "/" + lat + "," + long + exclude + unit;
-
-    var url_city = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" + lat + "&lon=" + long;
-
+    var url_city = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + lat + "," + long + "&format=json";
+console.log(url_city)
     fetch(url_city).then(
         (result) => {
             return result.json()
         }
     ).then( (json) =>{
-            var cityname = json["address"]["town"] + ", " + json["address"]["country"];
+        console.log("AAAA")
+        console.log(json)
+            var cityname = json[0]["display_name"].split(",")[3] + ", " + json[0]["display_name"].split(",")[json[0]["display_name"].split(",").length-1];
+            console.log(cityname);
             fetch(url_API).then(
                 (result) => {
                     return result.json()
@@ -43,7 +54,7 @@ function interpretData(data, cityname) {
     var hourly = data["hourly"];
     var hourly_data_list = hourly["data"];
 
-    //additional data
+    //Precip data
     var precip_type = "No precipitation expected";
     if (daily_data_list[1]["precipType"] != null) {
         precip_type = parseInt(daily_data_list[1]["precipProbability"] * 100).toString() + "% chance of " + daily_data_list[1]["precipType"] + " today";
@@ -62,6 +73,9 @@ function interpretData(data, cityname) {
     var dayName = fulldays[now.getDay()];
     var monName = months[now.getMonth()];
 
+
+    // Set Placeholder for Searchfield at bottom
+    document.getElementById("searchcityname").placeholder = cityname.split(',')[0];
 
     // Data for Overview
     document.getElementById("curdate").innerHTML = dayName + " " + now.getDate() + ". " + monName;
@@ -178,9 +192,10 @@ function interpretData(data, cityname) {
                 yAxes: [{
                     ticks: {
                         callback: function(value, index, values) {
-                            var conditions = ["", "clear", "cloudy", "wind", "fog", "rain", "snow", "sleet"];
+                            var conditions = ["", "Clear", "Cloudy", "Wind", "Fog", "Rain", "Snow", "Sleet"];
                             return conditions[value];
-                        }
+                        },
+                        fontSize: 18
                     }
                 }]
             }
@@ -237,8 +252,8 @@ function interpretData(data, cityname) {
             datasets: [{
                 label: "Humidity over next 24 hours",
                 data: hourly_hum_list,
-                backgroundColor: 'rgba(129, 212, 250, 1)',
-                borderColor: 'rgba(129, 212, 250, 1)',
+                backgroundColor: 'rgba(129, 200, 260, 1)',
+                borderColor: 'rgba(129, 200, 260, 1)',
                 borderWidth: '5',
                 pointRadius: '0',
                 pointHoverRadius: '5',
@@ -247,8 +262,8 @@ function interpretData(data, cityname) {
                 {
                     label: "Humidity Tomorrow",
                     data: hourly_hum_list.slice(24, 49),
-                    backgroundColor: 'rgba(128, 222, 234, 1)',
-                    borderColor: 'rgba(128, 222, 234, 1)',
+                    backgroundColor: 'rgba(0, 185, 200, 1)',
+                    borderColor: 'rgba(0, 185, 200, 1)',
                     borderWidth: '5',
                     pointRadius: '0',
                     pointHoverRadius: '5',
@@ -268,11 +283,23 @@ function interpretData(data, cityname) {
         }
     });
 
+    // To search when Enter is hit
+    document.getElementById('searchcityname').onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            searchForCity();
+        }
+    }
 }
 
 function showMap(position) {
-    mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 13); //Koordinaten und Zoom Level (Leere Box)
-    console.log(position);
+    if (typeof mymap !== "undefined"){ //onl< remove previous maps
+        mymap.remove();
+    }
+    if (typeof position == "string"){ //on refresh the posiion object is different
+        mymap = L.map('mapid').setView([position.split(",")[0], position.split(",")[1]], 13);
+    } else {
+        mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 13); //Koordinaten und Zoom Level (Leere Box)
+    }
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', { // Fügt Kartengraphik ein
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -284,5 +311,25 @@ function showMap(position) {
 }
 
 function markPosition(position) {
-    var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap); //Fügt marker an Koordinaten hinzu
+    if (typeof position == "string"){ //on refresh the posiion object is different
+        var marker = L.marker([position.split(",")[0], position.split(",")[1]]).addTo(mymap);
+    } else {
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap); //Fügt marker an Koordinaten hinzu
+    }
+}
+
+function searchForCity() {
+    var searchCityname = document.getElementById("searchcityname").value.toLowerCase();
+
+    var url_searchCity = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + searchCityname + "&format=json";
+console.log(url_searchCity)
+    fetch(url_searchCity).then(
+        (result) => {
+            return result.json()
+        }
+    ).then( (json) =>{
+        var searchLatLong = json[0]["lat"] + "," + json[0]["lon"];
+        callAPI(searchLatLong)
+        }
+    ).catch((err) => console.log(err));
 }

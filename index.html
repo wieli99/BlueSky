@@ -10,10 +10,11 @@
             crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     <script src="js/script.js"></script>
-    <title>BlueSky</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <title>BlueSky</title>
 </head>
 <body>
 <main id="app">
@@ -108,8 +109,16 @@
         <div id="mapid"></div>
     </div>
 
+    <div class="divsearch">
+        <form onkeypress="return event.keyCode != 13">
+            <input type="text" id="searchcityname" placeholder="Test">
+            <input type="button" value="Search City" onclick="searchForCity()">
+        </form>
+    </div>
 </main>
 <footer>Created By Florian Wieland - <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></footer>
+
+
 
 </body>
 

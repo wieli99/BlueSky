@@ -198,6 +198,23 @@ body{
 }
 
 
+
+.divsearch{
+    margin-top: 2%;
+    text-align: center;
+}
+
+#searchcityname{
+    width: 40%;
+}
+
+
+
+
+
+
+
+
 footer{
     margin-top: 2%;
     text-align: center;
