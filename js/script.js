@@ -134,6 +134,21 @@ function interpretData(data, cityname) {
             hourly_weather_list[i] = '7';
     }
 
+    //Temperature for TempChart
+    var hourly_temp_list = []
+    for (i=0; i<48; i++){
+        hourly_temp_list[i] = hourly_data_list[i+1]["temperature"];
+    }
+
+    //Humidity for HumChart
+    var hourly_hum_list = []
+    for (i=0; i<48; i++){
+        hourly_hum_list[i] = hourly_data_list[i+1]["humidity"]*100;
+    }
+    //Prediction to fill Chart
+    hourly_hum_list[48] = hourly_hum_list[47] - (hourly_hum_list[46] - hourly_hum_list[47]);
+    hourly_temp_list[48] = hourly_temp_list[47] - (hourly_temp_list[46] - hourly_temp_list[47]);
+
     //The next 14 hours
     curhour = new Date().getHours();
     nexthours = []
@@ -142,7 +157,8 @@ function interpretData(data, cityname) {
     }
 
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+    //Weather Chart
+    var ctx = document.getElementById('weatherChart').getContext('2d');
     var weatherChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -172,13 +188,84 @@ function interpretData(data, cityname) {
         }
     });
 
-    // used for humidity graph
-    /*
-    var daily_hum_list = [8];
-    for(var i=0; i<8; i++){
-        daily_hum_list[i] = daily_data_list[i]["humidity"] * 100;
-    }
-    console.log(daily_hum_list)
-    */
+    //Temperature Chart
+    var tctx = document.getElementById('tempChart').getContext('2d');
+    var tempChart = new Chart(tctx, {
+        type: 'line',
+        data: {
+            labels: nexthours,
+            datasets: [{
+                label: "Temperature over next 24 hours",
+                data: hourly_temp_list,
+                backgroundColor: 'rgba(239, 108, 0, 1)',
+                borderColor: 'rgba(239, 108, 0, 1)',
+                borderWidth: '5',
+                pointRadius: '0',
+                pointHoverRadius: '5',
+                fill: false,
+            },
+            {
+                label: "Temperature Tomorrow",
+                data: hourly_temp_list.slice(24, 49),
+                backgroundColor: 'rgba(253, 216, 53, 1)',
+                borderColor: 'rgba(253, 216, 53, 1)',
+                borderWidth: '5',
+                pointRadius: '0',
+                pointHoverRadius: '5',
+                fill: false,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return value + "°C";
+                        }
+                    }
+                }]
+            }
+        }
+    });
 
+
+    //Humidity Chart
+    var hctx = document.getElementById('humChart').getContext('2d');
+    var humChart = new Chart(hctx, {
+        type: 'line',
+        data: {
+            labels: nexthours,
+            datasets: [{
+                label: "Humidity over next 24 hours",
+                data: hourly_hum_list,
+                backgroundColor: 'rgba(129, 212, 250, 1)',
+                borderColor: 'rgba(129, 212, 250, 1)',
+                borderWidth: '5',
+                pointRadius: '0',
+                pointHoverRadius: '5',
+                fill: false,
+            },
+                {
+                    label: "Humidity Tomorrow",
+                    data: hourly_hum_list.slice(24, 49),
+                    backgroundColor: 'rgba(128, 222, 234, 1)',
+                    borderColor: 'rgba(128, 222, 234, 1)',
+                    borderWidth: '5',
+                    pointRadius: '0',
+                    pointHoverRadius: '5',
+                    fill: false,
+                }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return value + "%";
+                        }
+                    }
+                }]
+            }
+        }
+    });
 }
