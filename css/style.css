@@ -1,6 +1,7 @@
 body{
     margin-left: 2%;
     margin-right: 2%;
+    font-family: "Lato", serif;
 }
 #app{
     display: flex;
@@ -182,4 +183,27 @@ body{
 
 #humChart{
     max-width: 95%;
+}
+
+
+
+.map{
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#mapid{
+    height: 400px;
+}
+
+
+footer{
+    margin-top: 2%;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #0AA9F7;
 }

@@ -1,6 +1,3 @@
-// DONT FORGET WINTER / SUMMER TIME, THERE IS AN OFFSET JSON PAR IN API - ITS DEPRECATED.!!----------------------------------------------------------------
-
-
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(callAPI)
 }
@@ -34,6 +31,8 @@ function callAPI(gpsdata){
             ).catch((err) => console.log(err));
         }
     ).catch((err) => console.log(err));
+
+    showMap(gpsdata);
     }
 
 function interpretData(data, cityname) {
@@ -268,4 +267,22 @@ function interpretData(data, cityname) {
             }
         }
     });
+
+}
+
+function showMap(position) {
+    mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 13); //Koordinaten und Zoom Level (Leere Box)
+    console.log(position);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', { // Fügt Kartengraphik ein
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets', //satellite
+        accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+    }).addTo(mymap);
+    markPosition(position)
+}
+
+function markPosition(position) {
+    var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap); //Fügt marker an Koordinaten hinzu
 }
