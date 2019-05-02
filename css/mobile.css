@@ -4,6 +4,7 @@
         margin-left: 2%;
         margin-right: 2%;
         font-family: "Lato", serif;
+        font-size: 150%;
     }
     #app{
         display: flex;
@@ -189,6 +190,7 @@
 
     #humChart{
         max-width: 95%;
+        margin-top: 5%;
     }
 
 
