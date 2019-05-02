@@ -1,0 +1,234 @@
+
+@media only screen and (max-width: 1081px) {
+    body{
+        margin-left: 2%;
+        margin-right: 2%;
+        font-family: "Lato", serif;
+    }
+    #app{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+
+    #mainoverview{
+        display: flex;
+    }
+
+    #cityanddate{
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #mainicon{
+        justify-content: center;
+    }
+
+    #maininfo{
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+    #curdate{
+        overflow-wrap: break-word;
+        text-align: right;
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+    }
+
+    #cityname {
+        overflow-wrap: break-word;
+        text-align: right;
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+    }
+
+    #dayicon{
+        max-height: 300px;
+        width: auto;
+        height: auto;
+    }
+
+    #shortsummary{
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+    }
+
+
+
+
+    #summary{
+        margin-bottom: 5%;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+    }
+
+
+
+
+    .sectionweek-weather{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sectionweek{
+        display: flex;
+        flex-grow: 1;
+        flex-basis: 0;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .sectionweeksection{
+        display: flex;
+        flex-grow: 1;
+        flex-basis: 0;
+        align-items: center;
+    }
+
+    .sectionweather{
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+
+    .shorticons{
+        margin-right: 1%;
+        max-height: 80px;
+        width: auto;
+    }
+
+
+    .weekname{
+        margin-right: 1%;
+        width: 3%;
+        color: black;
+    }
+
+    .weektexts{
+        flex-grow: 1;
+        margin-right: 1%;
+        text-align: center;
+        color: black;
+    }
+
+    .weektemps{
+        margin-right: 2%;
+        color: black;
+    }
+
+    .divsepline{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 1px;
+        margin-right: 1%;
+        display: none;
+    }
+
+    #sepline{
+        max-height: 400px;
+        height: auto;
+        width: auto;
+        display: none;
+    }
+
+
+    #weatherChart{
+        max-width: 100%;
+    }
+
+
+    .temptimeline{
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    #tempChart{
+        max-width: 95%;
+    }
+
+
+
+
+    .sectioncharts{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0;
+        margin-top: 5%;
+    }
+
+    .humtimeline{
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    #humChart{
+        max-width: 95%;
+    }
+
+
+
+    .map{
+        margin-top: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    #mapid{
+        height: 400px;
+    }
+
+
+
+    .divsearch{
+        margin-top: 2%;
+        text-align: center;
+    }
+
+    #searchcityname{
+        width: 40%;
+    }
+
+
+
+
+
+
+
+
+    footer{
+        margin-top: 2%;
+        text-align: center;
+    }
+
+    a{
+        text-decoration: none;
+        color: #0AA9F7;
+    }
+
+}

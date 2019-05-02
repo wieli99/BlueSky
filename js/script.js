@@ -196,6 +196,8 @@ function interpretData(data, cityname) {
                 borderWidth: '5',
                 pointRadius: '0',
                 pointHoverRadius: '5',
+                borderJoinStyle: "round",
+                lineTension: 0,
                 fill: false,
             }]
         },
@@ -228,6 +230,7 @@ function interpretData(data, cityname) {
                 borderWidth: '5',
                 pointRadius: '0',
                 pointHoverRadius: '5',
+                borderJoinStyle: "round",
                 fill: false,
             },
             {
@@ -238,6 +241,7 @@ function interpretData(data, cityname) {
                 borderWidth: '5',
                 pointRadius: '0',
                 pointHoverRadius: '5',
+                borderJoinStyle: "round",
                 fill: false,
             }]
         },
@@ -269,6 +273,7 @@ function interpretData(data, cityname) {
                 borderWidth: '5',
                 pointRadius: '0',
                 pointHoverRadius: '5',
+                borderJoinStyle: "round",
                 fill: false,
             },
                 {
@@ -279,6 +284,7 @@ function interpretData(data, cityname) {
                     borderWidth: '5',
                     pointRadius: '0',
                     pointHoverRadius: '5',
+                    borderJoinStyle: "round",
                     fill: false,
                 }]
         },
