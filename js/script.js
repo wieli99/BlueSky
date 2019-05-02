@@ -306,6 +306,11 @@ function interpretData(data, cityname) {
         if (event.keyCode == 13) {
             searchForCity();
         }
+    };
+
+    //switch for Night-Mode
+    if (!(new Date().getHours() > 7 && new Date().getHours() < 19)){
+        nightMode();
     }
 }
 
@@ -350,4 +355,19 @@ function searchForCity() {
         callAPI(searchLatLong)
         }
     ).catch((err) => console.log(err));
+}
+
+function nightMode() {
+    var cssId = 'myCss';
+    if (!document.getElementById(cssId))
+    {
+        var head  = document.getElementsByTagName('head')[0];
+        var link  = document.createElement('link');
+        link.id   = cssId;
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/night.css';
+        link.media = 'all';
+        head.appendChild(link);
+    }
 }
