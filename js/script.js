@@ -185,7 +185,7 @@ function interpretData(data, cityname) {
     if (!(new Date().getHours() > 7 && new Date().getHours() < 19)){
         document.getElementById("nightswitch").checked = true;
         switchIsChecked = true;
-        var chartLabelColor = nightMode();
+        nightMode();
     }
 
 
@@ -211,7 +211,7 @@ function interpretData(data, cityname) {
         options: {
             legend: {
                 labels: {
-                    fontColor: chartLabelColor
+                    fontColor: "#aaaaaa"
                 }
             },
             scales: {
@@ -222,12 +222,12 @@ function interpretData(data, cityname) {
                             return conditions[value];
                         },
                         fontSize: 18,
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }],
                 xAxes: [{
                     ticks: {
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }]
             }
@@ -266,7 +266,7 @@ function interpretData(data, cityname) {
         options: {
             legend: {
                 labels: {
-                    fontColor: chartLabelColor
+                    fontColor: "#aaaaaa"
                 }
             },
             scales: {
@@ -275,12 +275,12 @@ function interpretData(data, cityname) {
                         callback: function(value, index, values) {
                             return value + "°C";
                         },
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }],
                 xAxes: [{
                     ticks: {
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }]
             }
@@ -320,7 +320,7 @@ function interpretData(data, cityname) {
         options: {
             legend: {
                 labels: {
-                    fontColor: chartLabelColor
+                    fontColor: "#aaaaaa"
                 }
             },
             scales: {
@@ -329,12 +329,12 @@ function interpretData(data, cityname) {
                         callback: function(value, index, values) {
                             return value + "%";
                         },
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }],
                 xAxes: [{
                     ticks: {
-                        fontColor: chartLabelColor
+                        fontColor: "#aaaaaa"
                     }
                 }]
             }
@@ -408,10 +408,8 @@ function nightMode() {
         link.media = 'all';
         head.appendChild(link);
 
-        return '#e0e0e0';
     } else {
         document.getElementById("myCss").href = "css/night.css";
-        return 'black';
     }
 }
 
