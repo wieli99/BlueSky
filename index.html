@@ -86,7 +86,7 @@
         </div>
 
         <div class="divsepline">
-            <img src="BlueSkyIcons/Line.png" id="sepline">
+            <img src="BlueSkyIcons/Line.png" class="sepline">
         </div>
 
         <div class="sectionweather">
@@ -100,7 +100,7 @@
         </div>
 
         <div class="divsepline">
-            <img src="BlueSkyIcons/Line.png" id="sepline">
+            <img src="BlueSkyIcons/Line.png" class="sepline">
         </div>
 
         <div class="humtimeline">
@@ -117,6 +117,12 @@
             <input type="text" id="searchcityname" placeholder="No Access to your location. Please specify a city name">
             <button type="button" onclick="searchForCity()">Search City</button>
         </form>
+
+
+        <label class="switch">
+            <input type="checkbox" onclick="nightModeSlider()" id="nightswitch">
+            <span class="slider round"></span>
+        </label>
     </div>
 
 </main>

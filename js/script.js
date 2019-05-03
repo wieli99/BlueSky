@@ -4,6 +4,8 @@ var isPainted = false;
 var weatherChart;
 var tempChart;
 var humChart;
+var switchIsChecked = false;
+
 
 if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(callAPI)
@@ -181,6 +183,8 @@ function interpretData(data, cityname) {
 
     //switch for Night-Mode -> returns label Color (cannot be done in css
     if (!(new Date().getHours() > 7 && new Date().getHours() < 19)){
+        document.getElementById("nightswitch").checked = true;
+        switchIsChecked = true;
         var chartLabelColor = nightMode();
     }
 
@@ -406,6 +410,21 @@ function nightMode() {
 
         return '#e0e0e0';
     } else {
+        document.getElementById("myCss").href = "css/night.css";
         return 'black';
+    }
+}
+
+function dayMode() {
+    document.getElementById("myCss").href = "";
+}
+
+function nightModeSlider() {
+    if (switchIsChecked){
+        switchIsChecked = false;
+        dayMode();
+    } else {
+        switchIsChecked = true;
+        nightMode();
     }
 }

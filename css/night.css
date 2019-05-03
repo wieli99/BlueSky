@@ -216,8 +216,8 @@ body{
 
 button{
     padding: 0.5%;
-    margin-left: 0.5%;
-    height: 100%;
+    margin-left: 0.5%;;
+    height: auto;
     color: #c0c0c0;
     background-color: #222244;
     border: 2px solid;
@@ -227,8 +227,8 @@ button{
 
 button:hover{
     padding: 0.5%;
-    margin-left: 0.5%;
-    height: 100%;
+    margin-left: 0.5%;;
+    height: auto;
     color: #c0c0c0;
     background-color: #222244;
     border: 2px solid;
@@ -238,7 +238,7 @@ button:hover{
 
 input{
     padding: 0.5%;
-    height: 100%;
+    height: auto;
     color: #c0c0c0;
     background-color: #222244;
     border: 2px solid;
