@@ -151,18 +151,16 @@ function interpretData(data, cityname) {
 
     //Temperature for TempChart
     var hourly_temp_list = []
-    for (i=0; i<48; i++){
-        hourly_temp_list[i] = hourly_data_list[i+1]["temperature"];
+    for (i=0; i<49; i++){
+        hourly_temp_list[i] = hourly_data_list[i]["temperature"];
     }
 
     //Humidity for HumChart
     var hourly_hum_list = []
-    for (i=0; i<48; i++){
-        hourly_hum_list[i] = hourly_data_list[i+1]["humidity"]*100;
+    for (i=0; i<49; i++){
+        hourly_hum_list[i] = hourly_data_list[i]["humidity"]*100;
     }
-    //Prediction to fill Chart
-    hourly_hum_list[48] = hourly_hum_list[47] - (hourly_hum_list[46] - hourly_hum_list[47]);
-    hourly_temp_list[48] = hourly_temp_list[47] - (hourly_temp_list[46] - hourly_temp_list[47]);
+
 
     //The next 14 hours
     curhour = new Date().getHours();
