@@ -25,14 +25,14 @@ function callAPI(gpsdata){
 
 
     var url_API = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + apiKey + "/" + lat + "," + long + exclude + unit;
-    var url_city = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + lat + "," + long + "&format=json";
+    var url_city = "https://eu1.locationiq.com/v1/reverse.php?key=d2c1d2b99010ab&normalizecity=1&lat=" + lat + "&lon=" + long + "&format=json";
 
     fetch(url_city).then(
         (result) => {
             return result.json()
         }
     ).then( (json) =>{
-            var cityname = json[0]["display_name"].split(",")[3] + ", " + json[0]["display_name"].split(",")[json[0]["display_name"].split(",").length-1];
+            var cityname = json["address"]["city"] + ", " + json["address"]["country"];
 
             fetch(url_API).then(
                 (result) => {
@@ -344,7 +344,8 @@ function markPosition(position) {
 function searchForCity() {
     var searchCityname = document.getElementById("searchcityname").value.toLowerCase();
 
-    var url_searchCity = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=" + searchCityname + "&format=json";
+    // Get coords for entered city and then start fresh but using the new coords and not the gps
+    var url_searchCity = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=city," + searchCityname + "&format=json";
 
     fetch(url_searchCity).then(
         (result) => {
