@@ -179,6 +179,11 @@ function interpretData(data, cityname) {
     //To fix Refresh Bug
     isPainted = true;
 
+    //switch for Night-Mode -> returns label Color (cannot be done in css
+    if (!(new Date().getHours() > 7 && new Date().getHours() < 19)){
+        var chartLabelColor = nightMode();
+    }
+
 
     //Weather Chart
     var ctx = document.getElementById('weatherChart').getContext('2d');
@@ -200,6 +205,11 @@ function interpretData(data, cityname) {
             }]
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: chartLabelColor
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
@@ -207,7 +217,13 @@ function interpretData(data, cityname) {
                             var conditions = ["", "Clear", "Cloudy", "Wind", "Fog", "Rain", "Snow", "Sleet"];
                             return conditions[value];
                         },
-                        fontSize: 18
+                        fontSize: 18,
+                        fontColor: chartLabelColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: chartLabelColor
                     }
                 }]
             }
@@ -244,12 +260,23 @@ function interpretData(data, cityname) {
             }]
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: chartLabelColor
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
                         callback: function(value, index, values) {
                             return value + "°C";
-                        }
+                        },
+                        fontColor: chartLabelColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: chartLabelColor
                     }
                 }]
             }
@@ -287,12 +314,23 @@ function interpretData(data, cityname) {
                 }]
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: chartLabelColor
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
                         callback: function(value, index, values) {
                             return value + "%";
-                        }
+                        },
+                        fontColor: chartLabelColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: chartLabelColor
                     }
                 }]
             }
@@ -306,10 +344,7 @@ function interpretData(data, cityname) {
         }
     };
 
-    //switch for Night-Mode
-    if (!(new Date().getHours() > 7 && new Date().getHours() < 19)){
-        nightMode();
-    }
+
 }
 
 function showMap(position) {
@@ -325,7 +360,7 @@ function showMap(position) {
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', { // Fügt Kartengraphik ein
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
-        id: 'mapbox.streets', //satellite
+        id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
     }).addTo(mymap);
     markPosition(position)
@@ -368,5 +403,9 @@ function nightMode() {
         link.href = 'css/night.css';
         link.media = 'all';
         head.appendChild(link);
+
+        return '#e0e0e0';
+    } else {
+        return 'black';
     }
 }

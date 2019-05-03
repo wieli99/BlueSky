@@ -260,3 +260,6 @@ a{
     color: #0AA9F7;
 }
 
+.leaflet-tile {
+    -webkit-filter: hue-rotate(350deg) invert(90%);
+}
