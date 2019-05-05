@@ -83,11 +83,11 @@ function interpretData(data, cityname) {
 
     // Data for Overview
     document.getElementById("curdate").innerHTML = dayName + " " + now.getDate() + ". " + monName;
-    document.getElementById("cityname").innerHTML = cityname; // Needs to be adjusted! -------------------------------------------------------------------
-    document.getElementById("dayicon").src = "BlueSkyIcons/" + hourly_data_list[0]["icon"] + ".png";
-    document.getElementById("shortsummary").innerHTML = hourly_data_list[0]["summary"];
-    document.getElementById("overview-feel").innerHTML = "Feels Like " + Math.round(hourly_data_list[0]["apparentTemperature"], 1).toString() + "°C";
-    document.getElementById("overview-actual").innerHTML = "Actual " + Math.round(hourly_data_list[0]["temperature"], 1).toString() + "°C";
+    document.getElementById("cityname").innerHTML = cityname;
+    document.getElementById("dayicon").src = "BlueSkyIcons/" + data["currently"]["icon"] + ".png";
+    document.getElementById("shortsummary").innerHTML = data["currently"]["summary"];
+    document.getElementById("overview-feel").innerHTML = "Feels Like " + Math.round(data["currently"]["apparentTemperature"], 1).toString() + "°C";
+    document.getElementById("overview-actual").innerHTML = "Actual " + Math.round(data["currently"]["temperature"], 1).toString() + "°C";
     document.getElementById("overview-precip").innerHTML = precip_type;
     document.getElementById("summary").innerHTML = hourly["summary"];
 
