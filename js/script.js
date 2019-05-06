@@ -60,8 +60,8 @@ function interpretData(data, cityname) {
 
     //Precip data
     var precip_type = "No precipitation expected";
-    if (daily_data_list[1]["precipType"] != null) {
-        precip_type = parseInt(daily_data_list[1]["precipProbability"] * 100).toString() + "% chance of " + daily_data_list[1]["precipType"] + " today";
+    if (daily_data_list[0]["precipType"] != null) {
+        precip_type = parseInt(daily_data_list[0]["precipProbability"] * 100).toString() + "% chance of " + daily_data_list[0]["precipType"] + " today";
     }
 
     //Data for Week Overview Daynames
@@ -92,12 +92,12 @@ function interpretData(data, cityname) {
     document.getElementById("summary").innerHTML = hourly["summary"];
 
     // Data for Week Preview
-    document.getElementById("shorticons-1").src = "BlueSkyIcons/" + daily_data_list[2]["icon"] + ".png";
-    document.getElementById("shorticons-2").src = "BlueSkyIcons/" + daily_data_list[3]["icon"] + ".png";
-    document.getElementById("shorticons-3").src = "BlueSkyIcons/" + daily_data_list[4]["icon"] + ".png";
-    document.getElementById("shorticons-4").src = "BlueSkyIcons/" + daily_data_list[5]["icon"] + ".png";
-    document.getElementById("shorticons-5").src = "BlueSkyIcons/" + daily_data_list[6]["icon"] + ".png";
-    document.getElementById("shorticons-6").src = "BlueSkyIcons/" + daily_data_list[7]["icon"] + ".png";
+    document.getElementById("shorticons-1").src = "BlueSkyIcons/" + daily_data_list[1]["icon"] + ".png";
+    document.getElementById("shorticons-2").src = "BlueSkyIcons/" + daily_data_list[2]["icon"] + ".png";
+    document.getElementById("shorticons-3").src = "BlueSkyIcons/" + daily_data_list[3]["icon"] + ".png";
+    document.getElementById("shorticons-4").src = "BlueSkyIcons/" + daily_data_list[4]["icon"] + ".png";
+    document.getElementById("shorticons-5").src = "BlueSkyIcons/" + daily_data_list[5]["icon"] + ".png";
+    document.getElementById("shorticons-6").src = "BlueSkyIcons/" + daily_data_list[6]["icon"] + ".png";
 
     document.getElementById("weekname-1").innerHTML = week_abbr[1];
     document.getElementById("weekname-2").innerHTML = week_abbr[2];
@@ -106,19 +106,19 @@ function interpretData(data, cityname) {
     document.getElementById("weekname-5").innerHTML = week_abbr[5];
     document.getElementById("weekname-6").innerHTML = week_abbr[6];
 
-    document.getElementById("weektexts-1").innerHTML = daily_data_list[2]["summary"];
-    document.getElementById("weektexts-2").innerHTML = daily_data_list[3]["summary"];
-    document.getElementById("weektexts-3").innerHTML = daily_data_list[4]["summary"];
-    document.getElementById("weektexts-4").innerHTML = daily_data_list[5]["summary"];
-    document.getElementById("weektexts-5").innerHTML = daily_data_list[6]["summary"];
-    document.getElementById("weektexts-6").innerHTML = daily_data_list[7]["summary"];
+    document.getElementById("weektexts-1").innerHTML = daily_data_list[1]["summary"];
+    document.getElementById("weektexts-2").innerHTML = daily_data_list[2]["summary"];
+    document.getElementById("weektexts-3").innerHTML = daily_data_list[3]["summary"];
+    document.getElementById("weektexts-4").innerHTML = daily_data_list[4]["summary"];
+    document.getElementById("weektexts-5").innerHTML = daily_data_list[5]["summary"];
+    document.getElementById("weektexts-6").innerHTML = daily_data_list[6]["summary"];
 
-    document.getElementById("weektemps-1").innerHTML = Math.round(daily_data_list[2]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[2]["temperatureHigh"]) + "°C";
-    document.getElementById("weektemps-2").innerHTML = Math.round(daily_data_list[3]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[3]["temperatureHigh"]) + "°C";
-    document.getElementById("weektemps-3").innerHTML = Math.round(daily_data_list[4]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[4]["temperatureHigh"]) + "°C";
-    document.getElementById("weektemps-4").innerHTML = Math.round(daily_data_list[5]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[5]["temperatureHigh"]) + "°C";
-    document.getElementById("weektemps-5").innerHTML = Math.round(daily_data_list[6]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[6]["temperatureHigh"]) + "°C";
-    document.getElementById("weektemps-6").innerHTML = Math.round(daily_data_list[7]["temperatureLow"]) + "°C - " + Math.round(daily_data_list[7]["temperatureHigh"]) + "°C";
+    document.getElementById("weektemps-1").innerHTML = Math.round(daily_data_list[1]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[1]["temperatureMax"]) + "°C";
+    document.getElementById("weektemps-2").innerHTML = Math.round(daily_data_list[2]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[2]["temperatureMax"]) + "°C";
+    document.getElementById("weektemps-3").innerHTML = Math.round(daily_data_list[3]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[3]["temperatureMax"]) + "°C";
+    document.getElementById("weektemps-4").innerHTML = Math.round(daily_data_list[4]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[4]["temperatureMax"]) + "°C";
+    document.getElementById("weektemps-5").innerHTML = Math.round(daily_data_list[5]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[5]["temperatureMax"]) + "°C";
+    document.getElementById("weektemps-6").innerHTML = Math.round(daily_data_list[6]["temperatureMin"]) + "°C - " + Math.round(daily_data_list[6]["temperatureMax"]) + "°C";
 
 
     //The Weather Data for next 24 hours, for the Timeline
