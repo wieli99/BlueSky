@@ -26,6 +26,11 @@ body {
     color: #e0e0e0;
 }
 
+.wear{
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+
 
 .weekname {
     color: #e0e0e0;
@@ -43,6 +48,11 @@ body {
     max-height: 400px;
     height: auto;
     width: auto;
+}
+
+.sepline{
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
 
 

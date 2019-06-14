@@ -489,6 +489,39 @@ function selectWear(hourly_data_list, hourly_weather_list){
         scarf = false
     }
 
-    console.log("Jeans: " + jeans + " Long Shirt: " + long_shirt + " Umbrella: " + umbrella + " Jacket: " + jacket + " Scarf: " + scarf)
+    //Choose Images
+    if (jeans){
+        document.getElementById("jeans").src = "WearIcons/trousers.png";
+    } else {
+        document.getElementById("jeans").src = "WearIcons/shorts.png";
+    }
+
+    if (long_shirt){
+        document.getElementById("shirt").src = "WearIcons/long-shirt.png";
+    } else {
+        document.getElementById("shirt").src = "WearIcons/shirt.png";
+    }
+
+    if (jacket){
+        document.getElementById("jacket").parentElement.style.display = "unset";
+        document.getElementById("jacket").src = "WearIcons/jacket.png";
+    } else {
+        document.getElementById("jacket").parentElement.style.display = "none";
+    }
+
+    if (umbrella){
+        document.getElementById("umbrella").parentElement.style.display = "unset";
+        document.getElementById("umbrella").src = "WearIcons/umbrella.png";
+    } else {
+        document.getElementById("umbrella").parentElement.style.display = "none";
+    }
+
+    if (scarf){
+        document.getElementById("scarf").parentElement.style.display = "unset";
+        document.getElementById("scarf").src = "WearIcons/scarf.png";
+    } else {
+        document.getElementById("scarf").parentElement.style.display = "none";
+    }
+
 
 }

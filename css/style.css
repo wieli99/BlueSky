@@ -74,6 +74,25 @@
         color: black;
     }
 
+    #wearables{
+        margin-top: -3%;
+        margin-left: 40%;
+        margin-right: 40%;
+        display: flex;
+    }
+
+    .wear{
+        align-self: center;
+        max-width: 40px;
+    }
+
+    .weardiv{
+        flex-basis: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+
 
     .sectionweek-weather {
         display: flex;
