@@ -347,6 +347,8 @@ function interpretData(data, cityname) {
         }
     };
 
+    selectWear(hourly_data_list);
+
 
 }
 
@@ -424,4 +426,69 @@ function nightModeSlider() {
         switchIsChecked = true;
         nightMode();
     }
+}
+
+function selectWear(hourly_data_list, hourly_weather_list){
+    //Possible Wearables
+    var jeans;
+    var long_shirt;
+    var umbrella;
+    var jacket;
+    var scarf;
+
+    //Picks what to wear
+    next_5_hours_temp = []
+    for (i=0; i<5; i++){
+        next_5_hours_temp[i] = hourly_data_list[i]["apparentTemperature"]
+    }
+
+    //For Jeans
+    if (Math.min.apply(Math, next_5_hours_temp) < 18){
+        jeans = true
+    } else {
+        jeans = false
+    }
+
+    //For Long Shirt
+    if (Math.min.apply(Math, next_5_hours_temp) < 13){
+        long_shirt = true
+    } else {
+        long_shirt = false
+    }
+
+    //For Umbrella
+    var hourly_weather_list = [];
+    for (i = 0; i < 25; i++) {
+        if (hourly_data_list[i]["icon"] == "clear-day" || hourly_data_list[i]["icon"] == "clear-night"){
+            hourly_weather_list[i] = ("clear")
+        } else if (hourly_data_list[i]["icon"] == "partly-cloudy-day" || hourly_data_list[i]["icon"] == "partly-cloudy-night"){
+            hourly_weather_list[i] = ("cloudy")
+        } else {
+            hourly_weather_list[i] = (hourly_data_list[i]["icon"])
+        }
+    }
+
+    if (hourly_weather_list.includes("rain") || hourly_weather_list.includes("snow") || hourly_weather_list.includes("sleet")){
+        umbrella = true
+    } else {
+        umbrella = false
+    }
+
+    //For Jacket
+    if (Math.min.apply(Math, next_5_hours_temp) < 10){
+        jacket = true
+    } else {
+        jacket = false
+    }
+
+
+    //For Scarf
+    if (Math.min.apply(Math, next_5_hours_temp) < 5){
+        scarf = true
+    } else {
+        scarf = false
+    }
+
+    console.log("Jeans: " + jeans + " Long Shirt: " + long_shirt + " Umbrella: " + umbrella + " Jacket: " + jacket + " Scarf: " + scarf)
+
 }
