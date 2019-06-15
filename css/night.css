@@ -50,9 +50,6 @@ body {
     filter: invert(1);
 }
 
-hr{
-    border-color: white
-}
 
 #searchcityname {
     color: #e0e0e0;

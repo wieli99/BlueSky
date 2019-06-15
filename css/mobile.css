@@ -67,7 +67,7 @@
 
 
     #summary {
-        margin-bottom: 0%;
+        margin-bottom: 5%;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
@@ -93,11 +93,6 @@
         text-align: center;
     }
 
-    hr{
-        min-width: 50%;
-        border-color: black;
-        margin-bottom: 3%;
-    }
 
     .sectionweeksection {
         display: flex;

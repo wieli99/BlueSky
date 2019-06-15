@@ -67,17 +67,11 @@
 
 
     #summary {
-        margin-bottom: 0%;
+        margin-bottom: 2%;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
         color: black;
-    }
-
-    hr{
-        min-width: 50%;
-        border-color: black;
-        margin-bottom: 1%;
     }
 
     #wearables{
