@@ -67,7 +67,7 @@
 
 
     #summary {
-        margin-bottom: 1%;
+        margin-bottom: 0%;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
@@ -75,9 +75,10 @@
     }
 
     #wearables{
-        margin-top: -3%;
+        margin-top: -1%;
         margin-left: 40%;
         margin-right: 40%;
+        margin-bottom: 2%;
         display: flex;
     }
 
@@ -92,6 +93,11 @@
         text-align: center;
     }
 
+    hr{
+        min-width: 50%;
+        border-color: black;
+        margin-bottom: 3%;
+    }
 
     .sectionweeksection {
         display: flex;
