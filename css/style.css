@@ -67,7 +67,7 @@
 
 
     #summary {
-        margin-bottom: 5%;
+        margin-bottom: 1%;
         text-align: center;
         font-size: 22px;
         font-weight: bold;
@@ -75,7 +75,6 @@
     }
 
     #wearables{
-        margin-top: -3%;
         margin-left: 40%;
         margin-right: 40%;
         display: flex;
@@ -83,7 +82,7 @@
 
     .wear{
         align-self: center;
-        max-width: 40px;
+        max-width: 30px;
     }
 
     .weardiv{

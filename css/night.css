@@ -26,11 +26,6 @@ body {
     color: #e0e0e0;
 }
 
-.wear{
-    -webkit-filter: invert(1);
-    filter: invert(1);
-}
-
 
 .weekname {
     color: #e0e0e0;
