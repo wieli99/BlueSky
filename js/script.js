@@ -21,7 +21,7 @@ function callAPI(gpsdata) {
     }
     // Set Variables for API URL
     var apiKey = "1868ff532a12f7795015bc33a64c2e97";
-    var exclude = "?exclude=minutely,alerts,flags";
+    var exclude = "?exclude=alerts,flags";
     var unit = "&units=si";
 
 
@@ -55,6 +55,10 @@ function interpretData(data, cityname) {
     var daily = data["daily"];
     var daily_data_list = daily["data"];
     var hourly = data["hourly"];
+    // minutely is not always available
+    if(data["minutely"] != "undefined"){
+        var minutely = data["minutely"];
+    }
     var hourly_data_list = hourly["data"];
 
     //Precip data
@@ -88,7 +92,12 @@ function interpretData(data, cityname) {
     document.getElementById("overview-feel").innerHTML = "Feels Like " + Math.round(data["currently"]["apparentTemperature"], 1).toString() + "°C";
     document.getElementById("overview-actual").innerHTML = "Actual " + Math.round(data["currently"]["temperature"], 1).toString() + "°C";
     document.getElementById("overview-precip").innerHTML = precip_type;
-    document.getElementById("summary").innerHTML = hourly["summary"];
+    // minutely is not always available
+    if(typeof minutely != "undefined"){
+        document.getElementById("summary").innerHTML = minutely["summary"];
+    } else{
+        document.getElementById("summary").innerHTML = hourly["summary"];
+    }
 
     // Data for Week Preview
     document.getElementById("shorticons-1").src = "BlueSkyIcons/" + daily_data_list[1]["icon"] + ".png";
@@ -250,17 +259,17 @@ function interpretData(data, cityname) {
                 borderJoinStyle: "round",
                 fill: false,
             },
-            {
-                label: "Temperature Tomorrow",
-                data: hourly_temp_list.slice(24, 49),
-                backgroundColor: 'rgba(253, 216, 53, 1)',
-                borderColor: 'rgba(253, 216, 53, 1)',
-                borderWidth: '5',
-                pointRadius: '0',
-                pointHoverRadius: '5',
-                borderJoinStyle: "round",
-                fill: false,
-            }]
+                {
+                    label: "Temperature Tomorrow",
+                    data: hourly_temp_list.slice(24, 49),
+                    backgroundColor: 'rgba(253, 216, 53, 1)',
+                    borderColor: 'rgba(253, 216, 53, 1)',
+                    borderWidth: '5',
+                    pointRadius: '0',
+                    pointHoverRadius: '5',
+                    borderJoinStyle: "round",
+                    fill: false,
+                }]
         },
         options: {
             legend: {
@@ -390,8 +399,8 @@ function searchForCity() {
             return result.json()
         }
     ).then( (json) =>{
-        var searchLatLong = json[0]["lat"] + "," + json[0]["lon"];
-        callAPI(searchLatLong)
+            var searchLatLong = json[0]["lat"] + "," + json[0]["lon"];
+            callAPI(searchLatLong)
         }
     ).catch((err) => console.log(err));
 }
