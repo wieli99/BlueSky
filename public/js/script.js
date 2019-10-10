@@ -6,9 +6,21 @@ var humChart;
 var switchIsChecked = false;
 
 
+//Make connection
+var socket = io.connect(window.location.href); //connects to whatever the url currently is
+
+
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(callAPI)
 }
+
+if (location.protocol !== 'https:') {
+    var gpsdata = {
+        coords: {'latitude': '47.44458', 'longitude': '15.29331'}
+    }
+    callAPI(gpsdata)
+}
+
 
 function callAPI(gpsdata) {
     console.log(gpsdata);
@@ -19,32 +31,28 @@ function callAPI(gpsdata) {
         var lat = gpsdata.split(",")[0];
         var long = gpsdata.split(",")[1];
     }
+
     // Set Variables for API URL
-    var apiKey = "1868ff532a12f7795015bc33a64c2e97";
     var exclude = "?exclude=alerts,flags";
     var unit = "&units=si";
 
 
-    var url_API = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + apiKey + "/" + lat + "," + long + exclude + unit;
-    var url_city = "https://eu1.locationiq.com/v1/reverse.php?key=d2c1d2b99010ab&normalizecity=1&lat=" + lat + "&lon=" + long + "&format=json";
+    var url_API = lat + "," + long + exclude + unit;
+    var url_city = lat + "&lon=" + long + "&format=json";
 
-    fetch(url_city).then(
-        (result) => {
-            return result.json()
-        }
-    ).then((json) => {
-            var cityname = json["address"]["city"] + ", " + json["address"]["country"];
 
-            fetch(url_API).then(
-                (result) => {
-                    return result.json()
-                }
-            ).then((json) => {
-                    interpretData(json, cityname)
-                }
-            ).catch((err) => console.log(err));
-        }
-    ).catch((err) => console.log(err));
+    // Send urls to server
+    socket.emit("urls",{url_API: url_API, url_city: url_city});
+
+    // Get Data from Server back
+    socket.on("urls", function (json) {
+        interpretData(json.url_API, json.cityname);
+    });
+
+
+
+
+
 
     showMap(gpsdata);
 }
@@ -392,17 +400,19 @@ function searchForCity() {
     var searchCityname = document.getElementById("searchcityname").value.toLowerCase();
 
     // Get coords for entered city and then start fresh but using the new coords and not the gps
-    var url_searchCity = "https://eu1.locationiq.com/v1/search.php?key=d2c1d2b99010ab&q=city," + searchCityname + "&format=json";
+    var url_searchCity = searchCityname + "&format=json";
 
-    fetch(url_searchCity).then(
-        (result) => {
-            return result.json()
-        }
-    ).then( (json) =>{
-            var searchLatLong = json[0]["lat"] + "," + json[0]["lon"];
-            callAPI(searchLatLong)
-        }
-    ).catch((err) => console.log(err));
+    function handle_city_search_response(timeout = 10000) {
+        return new Promise((resolve, reject)=>{
+            socket.emit("search_city", {url_searchCity: url_searchCity}, function (response){
+                resolve(response)
+            });
+        });
+    }
+
+    handle_city_search_response().then(search_lat_long => {
+        callAPI(search_lat_long)
+    })
 }
 
 function nightMode() {
