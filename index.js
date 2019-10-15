@@ -9,13 +9,13 @@ var server = app.listen(4000, function () {
     console.log("listening to requests on port 4000")
 });
 
-//Static files
+//Client sees public folder
 app.use(express.static('public'));
 
 //Socket Setup
 var io = socket(server);
 
-//Needed Variables for better protection od data
+//Needed Variables for better protection of data
 var apiKey = "1868ff532a12f7795015bc33a64c2e97";
 var half_url_API = "https://api.darksky.net/forecast/" + apiKey + "/";
 var half_url_city = "https://eu1.locationiq.com/v1/reverse.php?key=d2c1d2b99010ab&normalizecity=1&lat=";
@@ -26,7 +26,7 @@ io.on("connection", function (socket) {
 
     //When Server recieves "urls" message...
     socket.on("urls", function (urls) {
-        console.log("got urls for revers geocoding & weather API");
+        console.log("got urls for reverse geocoding & weather API");
 
         fetch(half_url_city + urls.url_city).then(
             (result) => {

@@ -149,7 +149,7 @@ function interpretData(data, cityname) {
         }
     }
 
-    // Maps the weather data to ints, for easier handling in vhart
+    // Maps the weather data to ints, for easier handling in chart
     for (i=0; i<hourly_weather_list.length; i++) {
         if (hourly_weather_list[i] == 'clear')
             hourly_weather_list[i] = '1';
@@ -182,7 +182,7 @@ function interpretData(data, cityname) {
 
     //The next 14 hours
     curhour = new Date().getHours();
-    nexthours = []
+    nexthours = [];
     for (i=0; i<25; i++){
         nexthours[i] = (curhour + i) % 24;
     }
