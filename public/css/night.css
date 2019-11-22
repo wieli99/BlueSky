@@ -1,5 +1,5 @@
 body {
-    background-color: #111133;
+    background-color: #141437;
 }
 
 
@@ -26,6 +26,11 @@ body {
     color: #e0e0e0;
 }
 
+.sectionweek-weather{
+    background-color: #101032;
+    border-radius: 25px;
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
+}
 
 .weekname {
     color: #e0e0e0;
@@ -50,9 +55,19 @@ body {
     filter: invert(1);
 }
 
+.sectioncharts{
+    background-color: #101032;
+    border-radius: 25px;
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
+}
+
 
 #searchcityname {
     color: #e0e0e0;
+}
+
+.map{
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
 }
 
 
@@ -60,6 +75,7 @@ button {
     color: #c0c0c0;
     background-color: #222244;
     border-color: #222244;
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
 }
 
 button:hover {
@@ -71,8 +87,13 @@ input {
     color: #c0c0c0;
     background-color: #222244;
     border-color: #222244;
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
 }
 
+.switch{
+    border-radius: 25px;
+    box-shadow: 0 2px 20px 0 #000022, 0 -2px 20px 0 #000022;
+}
 
 footer {
     color: #e0e0e0;
