@@ -1,3 +1,6 @@
+# Warning: This project has been deprecated
+if you still choose to deploy a version of this project, be sure to update all dependencies, to prevent possible security vulnerabilit
+
 # BlueSky
 Bluesky-Weather is a websocket-based webapp, that provides a beautiful weather-service experience (powered by DarkSky)
 
